@@ -1,0 +1,6 @@
+Miwer/
+├── index.html                 (página inicial com lista de produtos)
+├── produto.html?id=123       (página individual do produto)
+├── /assets                   (imagens, ícones)
+├── /styles                   (arquivo de estilos CSS)
+└── /scripts                  (funções JS se necessário)
