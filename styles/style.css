@@ -12,6 +12,29 @@ body {
   padding: 20px;
 }
 
+.menu-categorias {
+  display: flex;
+  justify-content: center;
+  background-color: #ffe9f3;
+  padding: 10px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.menu-categorias button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 12px;
+  background-color: #ffc1e3;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.menu-categorias button:hover {
+  background-color: #ff8fc7;
+}
+
 .produtos {
   display: flex;
   flex-wrap: wrap;
@@ -27,6 +50,11 @@ body {
   margin: 10px;
   padding: 15px;
   text-align: center;
+  transition: transform 0.2s ease;
+}
+
+.produto:hover {
+  transform: scale(1.03);
 }
 
 .produto img {
