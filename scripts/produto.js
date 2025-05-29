@@ -1,36 +1,63 @@
-// scripts/produto.js
-
-// Simulação de banco de dados de produtos
-const produtos = {
-  1: {
-    titulo: "Produto Fofo 1",
-    descricao: "Este produto é super útil e ainda por cima fofo!",
+const produtos = [
+  {
+    id: 1,
+    nome: "Espelho com Luz LED",
+    descricao: "Ideal para maquiagem e decoração.",
     imagem: "assets/produto1.jpg",
-    linkAfiliado: "https://siteoficial.com/produto1?ref=miwer"
+    categoria: "beleza",
   },
-  2: {
-    titulo: "Produto Fofo 2",
-    descricao: "Mais um produtinho lindo e funcional!",
+  {
+    id: 2,
+    nome: "Luminária de Lua",
+    descricao: "Iluminação suave para qualquer ambiente.",
     imagem: "assets/produto2.jpg",
-    linkAfiliado: "https://siteoficial.com/produto2?ref=miwer"
+    categoria: "casa",
+  },
+  {
+    id: 3,
+    nome: "Caixinha Bluetooth Rosa",
+    descricao: "Leve sua música com estilo!",
+    imagem: "assets/produto3.jpg",
+    categoria: "tecnologia",
+  },
+  {
+    id: 4,
+    nome: "Bolsa Pastel Love",
+    descricao: "Perfeita para looks delicados.",
+    imagem: "assets/produto4.jpg",
+    categoria: "moda",
   }
-};
+];
 
-// Função para pegar parâmetro da URL
-function getParametro(nome) {
-  const urlParams = new URLSearchParams(window.location.search);
-  return urlParams.get(nome);
+// Função para mostrar os produtos
+function mostrarProdutos(lista) {
+  const container = document.getElementById("lista-produtos");
+  container.innerHTML = "";
+
+  lista.forEach(prod => {
+    const produtoEl = document.createElement("div");
+    produtoEl.classList.add("produto");
+
+    produtoEl.innerHTML = `
+      <img src="${prod.imagem}" alt="${prod.nome}">
+      <h2>${prod.nome}</h2>
+      <p>${prod.descricao}</p>
+      <a class="botao" href="produto.html?id=${prod.id}">Ver mais</a>
+    `;
+
+    container.appendChild(produtoEl);
+  });
 }
 
-const id = getParametro("id");
-const produto = produtos[id];
-
-// Preenche os dados na página
-if (produto) {
-  document.getElementById("img-produto").src = produto.imagem;
-  document.getElementById("titulo-produto").textContent = produto.titulo;
-  document.getElementById("descricao-produto").textContent = produto.descricao;
-  document.getElementById("link-afiliado").href = produto.linkAfiliado;
-} else {
-  document.querySelector("main").innerHTML = "<p>Produto não encontrado 😢</p>";
+// Função para filtrar por categoria
+function filtrarCategoria(categoria) {
+  if (categoria === "tudo") {
+    mostrarProdutos(produtos);
+  } else {
+    const filtrados = produtos.filter(p => p.categoria === categoria);
+    mostrarProdutos(filtrados);
+  }
 }
+
+// Mostrar todos por padrão
+mostrarProdutos(produtos);
